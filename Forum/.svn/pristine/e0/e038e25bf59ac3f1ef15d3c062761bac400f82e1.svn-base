@@ -1,0 +1,38 @@
+package edu.cuit.demo.dao.impl;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.cuit.demo.dao.EmpDao;
+import edu.cuit.demo.dao.Jdbc;
+import edu.cuit.demo.dao.ResultSetHandler;
+import edu.cuit.demo.entity.Emp;
+
+public class EmpDaoImpl implements EmpDao {
+
+	@Override
+	public List<Emp> selectAll() {
+		String sql = "select * from emp";
+		Object obj = Jdbc.executeQuery(sql, new ResultSetHandler() {
+			@Override
+			public Object handle(ResultSet rs) throws SQLException {
+				List<Emp> list = new ArrayList<>();
+				while(rs.next()) {
+					Emp emp = new Emp(rs.getInt("empNo"), rs.getString("ename"), rs.getString("job"), rs.getInt("mgr"), rs.getDate("hireDate"), rs.getDouble("sal"), rs.getString("comm"), rs.getInt("deptNo"), rs.getBoolean("enabled"));
+					list.add(emp);
+				}
+				return list;
+			}
+		});
+		return (List<Emp>) obj;
+	}
+
+	@Override
+	public void delete(int id) {
+		String sql = "delete from emp where empNo = ?";
+		Jdbc.executeUpdate(sql, id);
+	}
+
+}

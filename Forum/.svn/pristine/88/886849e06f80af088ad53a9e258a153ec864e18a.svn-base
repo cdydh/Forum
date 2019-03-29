@@ -1,0 +1,10 @@
+package Service;
+
+import Entity.Topic;
+
+public interface TopicService {
+	abstract public void topicPublish(Topic topic);
+	abstract public Topic topicRead();
+	abstract public void topicEdit(Topic topic);
+	abstract public void topicDelete();
+}

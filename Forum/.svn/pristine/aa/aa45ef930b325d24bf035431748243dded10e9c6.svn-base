@@ -1,0 +1,10 @@
+package DAO;
+
+import Entity.Topic;
+
+public interface TopicDao {
+	abstract public void topicInsert(Topic topic);
+	abstract public void topicSelect();
+	abstract public void topicUpdate(Topic topic);
+	abstract public void topicDelete();
+}

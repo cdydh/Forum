@@ -1,0 +1,5 @@
+package edu.cuit.demo.common;
+
+public class CONST {
+	public static final String SESSION_CURRENT_USER_KEY = "userName";
+}

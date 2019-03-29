@@ -1,0 +1,16 @@
+package Service;
+
+import java.util.List;
+
+import Entity.User;
+import DAO.UserDaoImpl;
+
+public class UserServiceImpl implements UserService {
+
+	UserDaoImpl userdao = new UserDaoImpl();
+	
+	public List<User> list() {
+		return userdao.selectAll();
+	}
+
+}

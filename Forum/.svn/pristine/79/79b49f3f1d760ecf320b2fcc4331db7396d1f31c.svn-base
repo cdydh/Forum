@@ -1,0 +1,9 @@
+package Service;
+
+import java.util.List;
+
+import Entity.Board;
+
+public interface BoardService {
+	abstract public List<Board> show(); 
+}

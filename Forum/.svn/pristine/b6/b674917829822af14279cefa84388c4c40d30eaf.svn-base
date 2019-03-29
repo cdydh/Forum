@@ -1,0 +1,41 @@
+package edu.cuit.demo.web.servlet;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import edu.cuit.demo.entity.Emp;
+import edu.cuit.demo.service.EmpService;
+import edu.cuit.demo.service.impl.EmpServiceImpl;
+
+/*
+ * 此资源只能由合法用户(已登录过的用户)访问
+ */
+@WebServlet("/emp-list")
+public class EmpList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private EmpService empService = new EmpServiceImpl();
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("------------------------------EmpListServlet");
+		// 调用业务层得到数据
+		List<Emp> list = empService.list(); // empService为null
+		// 把数据传递给jsp组件
+		request.setAttribute("emps", list);
+		// 转发请求: 把输出响应的任务交给jsp去完成
+		request.getRequestDispatcher("/emp/list.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

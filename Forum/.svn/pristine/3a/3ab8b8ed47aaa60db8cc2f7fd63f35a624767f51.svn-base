@@ -1,0 +1,31 @@
+package DAO;
+
+import Entity.Topic;
+import Util.Jdbc;
+
+public class TopicDaoImpl implements TopicDao {
+
+	public void topicInsert(Topic topic) {
+		Object[] topictemp={topic.getTopicId(),topic.getBoardId()
+				,topic.getUserId(),topic.getTitle(),topic.getContent(),topic.getPostTime()}; 
+		String sql ="Insert into topic values(?,?,?,?,?,?)";
+		Jdbc.executeUpdate(sql, topictemp);
+	}
+
+	public void topicSelect() {
+		
+	}
+
+	@Override
+	public void topicUpdate(Topic topic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void topicDelete() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

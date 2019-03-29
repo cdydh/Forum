@@ -1,0 +1,19 @@
+package edu.cuit.demo.service.impl;
+
+import java.util.List;
+
+import edu.cuit.demo.dao.EmpDao;
+import edu.cuit.demo.dao.impl.EmpDaoImpl;
+import edu.cuit.demo.entity.Emp;
+import edu.cuit.demo.service.EmpService;
+
+public class EmpServiceImpl implements EmpService {
+
+	private EmpDao empDao = new EmpDaoImpl();
+
+	@Override
+	public List<Emp> list() {
+		return empDao.selectAll();
+	}
+
+}

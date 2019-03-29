@@ -1,0 +1,47 @@
+package DAO;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import Entity.User;
+import Util.Jdbc;
+import Util.ResultSetHandler;
+
+
+
+public class UserDaoImpl implements UserDao {
+	public List<User> selectAll() {
+		String sql = "select * from user";
+		Object obj = Jdbc.executeQuery(sql, new ResultSetHandler() {
+			public Object handle(ResultSet rs) throws SQLException {
+				List<User> userlist = new ArrayList<>();
+				while(rs.next()) {
+					User user = new User();
+					user.setUsername(rs.getString("username"));
+					user.setPassword(rs.getString("password"));
+					user.setSex(rs.getString("sex"));
+					user.setSchool(rs.getString("school"));
+					userlist.add(user);
+				}
+				return userlist;
+			}
+		});
+		return (List<User>)obj;		
+	}
+	public void update(String[] user){
+		String sql ="update user set password=? where username=?";
+		Jdbc.executeUpdate(sql, user);
+	}
+	public void insert(String[] user){
+		String sql ="insert into user values(?,?,?,?)";
+		Jdbc.executeUpdate(sql, user);
+	}
+	public void delete(String id){
+		String sql ="delete from user where username=?";
+		Jdbc.executeUpdate(sql, id);
+	}
+}

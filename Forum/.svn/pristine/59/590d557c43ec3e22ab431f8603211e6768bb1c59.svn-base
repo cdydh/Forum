@@ -1,0 +1,54 @@
+package edu.cuit.demo.web.listener;
+
+import javax.servlet.ServletRequestEvent;
+import javax.servlet.ServletRequestListener;
+import javax.servlet.annotation.WebListener;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
+import edu.cuit.demo.common.CONST;
+
+@WebListener
+public class SessionListenerImpl implements HttpSessionListener, ServletRequestListener {
+
+	private HttpServletRequest request;
+	
+	// 当session被创建时, 调用此方法
+	public void sessionCreated(HttpSessionEvent arg0) {
+		System.out.println("--- session被创建, 其ID为:" + arg0.getSession().getId() + " ---");
+		// 检查一下有没有那个名为"RM"的cookie
+		Cookie[] cookies = request.getCookies();
+		Cookie RM = null;
+		if(cookies != null) {
+			for (Cookie cookie : cookies) {
+				if("RM".equals(cookie.getName())) {
+					RM = cookie;
+				}
+			}
+		}
+		// 如果有, 这说明该用户曾经勾了"RememberMe", 这时, 应该视他为已登录状态(在session中存储一个用户名)
+		if(RM != null) {
+			arg0.getSession().setAttribute(CONST.SESSION_CURRENT_USER_KEY, RM.getValue());
+		}
+	}
+
+	// 当session被销毁时, 调用此方法
+	public void sessionDestroyed(HttpSessionEvent arg0) {
+		System.out.println("--- session被销毁, 其ID为:" + arg0.getSession().getId() + " ---");
+	}
+
+	@Override
+	public void requestDestroyed(ServletRequestEvent sre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void requestInitialized(ServletRequestEvent sre) {
+		System.out.println("----------------------requestInitialized");
+		this.request = (HttpServletRequest) sre.getServletRequest();
+	}
+
+}

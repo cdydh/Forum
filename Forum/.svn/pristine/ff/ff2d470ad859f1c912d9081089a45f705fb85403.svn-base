@@ -1,0 +1,16 @@
+package Service;
+
+import java.util.List;
+
+import DAO.BoardDaoImpl;
+import Entity.Board;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Override
+	public List<Board> show() {
+		BoardDaoImpl boarddao = new BoardDaoImpl();
+		return boarddao.SelectAll();
+	}
+
+}

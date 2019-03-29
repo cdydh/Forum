@@ -1,0 +1,42 @@
+package Servlet;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Entity.Topic;
+import Service.TopicServiceImpl;
+
+/**
+ * Servlet implementation class topicServlet
+ */
+@WebServlet("/topicServlet")
+public class topicServlet extends HttpServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		int topicId = Integer.parseInt(request.getParameter("topicId"));
+//		String boardId = request.getParameter("boardId");
+//		int userId = Integer.parseInt(request.getParameter("userId"));
+//		String title = request.getParameter("title");
+//		String content = request.getParameter("content");
+//		Date postTime = null;
+		Topic topic = new Topic();
+		TopicServiceImpl topicservice = new TopicServiceImpl();
+		topic.setTopicId(2016);
+		topic.setBoardId("wangzixuan");
+		topic.setUserId(0121506102);
+		topic.setTitle("CUIT");
+		topic.setContent("CUIT");
+		topic.setPostTime(null);
+		topicservice.topicPublish(topic);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

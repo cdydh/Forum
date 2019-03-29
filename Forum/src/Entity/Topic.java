@@ -1,0 +1,49 @@
+package Entity;
+
+import java.util.Date;
+
+public class Topic {
+	Integer topicId;
+	String boardId;
+	Integer userId;
+	String title;
+	String content;
+	Date postTime;
+	public Topic(){}
+	public Integer getTopicId() {
+		return topicId;
+	}
+	public void setTopicId(Integer topicId) {
+		this.topicId = topicId;
+	}
+	public String getBoardId() {
+		return boardId;
+	}
+	public void setBoardId(String boardId) {
+		this.boardId = boardId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getPostTime() {
+		return postTime;
+	}
+	public void setPostTime(Date postTime) {
+		this.postTime = postTime;
+	}
+}

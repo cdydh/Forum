@@ -1,0 +1,18 @@
+package edu.cuit.demo.dao;
+
+import java.util.List;
+
+import edu.cuit.demo.entity.Emp;
+
+/**
+ * 员工模块的数据访问接口
+ * @author admin
+ *
+ */
+public interface EmpDao {
+
+	List<Emp> selectAll();
+	
+	void delete(int id);
+		
+}

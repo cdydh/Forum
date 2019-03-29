@@ -1,0 +1,29 @@
+package Service;
+
+import java.util.List;
+
+import DAO.TopicDaoImpl;
+import Entity.Topic;
+
+public class TopicServiceImpl implements TopicService {
+	
+	TopicDaoImpl topicdao = new TopicDaoImpl();
+	public void topicPublish(Topic topic) {
+		topicdao.topicInsert(topic);
+	}
+
+	public List<Topic> topicRead() {
+		return topicdao.topicSelect();
+	}
+
+	@Override
+	public void topicEdit(Topic topic) {
+		topicdao.topicUpdate(topic);
+	}
+
+	@Override
+	public void topicDelete(int topicId) {
+		topicdao.topicDelete(topicId);
+	}
+
+}

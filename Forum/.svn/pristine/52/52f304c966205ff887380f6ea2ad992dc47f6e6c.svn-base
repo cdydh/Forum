@@ -1,0 +1,16 @@
+package edu.cuit.demo.service;
+
+import java.util.List;
+
+import edu.cuit.demo.entity.Emp;
+
+/**
+ * 业务接口
+ * @author admin
+ *
+ */
+public interface EmpService {
+	
+	List<Emp> list();
+	
+}

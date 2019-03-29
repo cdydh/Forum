@@ -1,0 +1,12 @@
+package DAO;
+
+import java.util.List;
+
+import Entity.Topic;
+
+public interface TopicDao {
+	abstract public void topicInsert(Topic topic);
+	abstract public List<Topic> topicSelect();
+	abstract public void topicUpdate(Topic topic);
+	abstract public void topicDelete(int topicId);
+}
